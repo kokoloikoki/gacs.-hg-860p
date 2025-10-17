@@ -61,12 +61,6 @@ if [ "$EUID" -ne 0 ]; then
     exit 1
 fi
 
-# Check Ubuntu version
-if [ "$(lsb_release -cs)" != "jammy" ]; then
-    echo -e "${RED}This script only supports Ubuntu 22.04 (Jammy)${NC}"
-    exit 1
-fi
-
 # Print banner
 print_banner
 
@@ -87,6 +81,8 @@ run_command "apt install -y npm" "Installing NPM ($(( ++current_step ))/$total_s
 run_command "wget http://ports.ubuntu.com/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_arm64.deb"
 
 run_command "wget http://ports.ubuntu.com/pool/main/o/openssl/libssldev_1.1.1f-1ubuntu2_arm64.deb"
+
+run_command "ls"
 
 run_command "sudo dpkg -i libssl1.1_1.1.1f-1ubuntu2_arm64.deb"
 
